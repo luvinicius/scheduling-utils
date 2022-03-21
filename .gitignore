@@ -58,7 +58,3 @@
 
 ### ShellScript ###
 *.sh
-
-
-### Tests not commited in the main ###
-tests/
