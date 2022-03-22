@@ -21,14 +21,28 @@ TEST_SUITE("Date comparision Tests")
                            /*second*/ 1, 0, 0, 0) == 0);
     }
 
-     TEST_CASE("Compare after dates")
+    TEST_CASE("Compare after dates")
     {
-
+        CHECK(compareDates(/*first*/ 0, 2023, 12, 1,
+                           /*second*/ 0, 2022, 12, 1) == 1);
+        CHECK(compareDates(/*first*/ 0, 0, 12, 1,
+                           /*second*/ 0, 0, 9, 1) == 1);
+        CHECK(compareDates(/*first*/ 0, 0, 12, 3,
+                           /*second*/ 0, 0, 12, 1) == 1);
+        CHECK(compareDates(/*first*/ 2, 0, 0, 0,
+                           /*second*/ 1, 0, 0, 0) == 1);
     }
 
     TEST_CASE("Compare before dates")
     {
-
+        CHECK(compareDates(/*first*/ 0, 2022, 12, 1,
+                           /*second*/ 0, 2023, 12, 1) == -1);
+        CHECK(compareDates(/*first*/ 0, 0, 1, 1,
+                           /*second*/ 0, 0, 2, 1) == -1);
+        CHECK(compareDates(/*first*/ 0, 0, 1, 1,
+                           /*second*/ 0, 0, 1, 2) == -1);
+        CHECK(compareDates(/*first*/ 1, 0, 0, 0,
+                           /*second*/ 6, 0, 0, 0) == -1);
     }
 }
 
@@ -46,12 +60,9 @@ TEST_SUITE("Hour comparision Tests")
 
     TEST_CASE("Compare after hours")
     {
-
     }
-
 
     TEST_CASE("Compare before hours")
     {
-
     }
 }

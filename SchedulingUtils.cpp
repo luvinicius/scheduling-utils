@@ -11,6 +11,7 @@
 
 /*============================================================================*/
 /* Date functions */
+
 int compareDates(int wDay1, int year1, int month1, int day1, int wDay2, int year2, int month2, int day2)
 {
   if (year1 != 0 && year2 != 0)

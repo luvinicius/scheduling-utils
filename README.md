@@ -1,6 +1,11 @@
 # Scheduling Utils
 Provides simple structures and functions to create and use scheduling information.
 
+# Main functions
+## compareDates
+Compare the first date with the second and returns the relation between the two dates.
+## compateHours
+Compare the first hour with the second and returns the relation between the two hours.
 
 ## Testing:
 Tests are written using Doctest library.
