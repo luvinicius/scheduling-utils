@@ -64,11 +64,22 @@ int compareDates(int wDay1, int year1, int month1, int day1, int wDay2, int year
   return 0;
 }
 
+int compareDates(tmElements_t tm1, tmElements_t tm2)
+{
+  return compareDates(tm1.Wday, tm1.Year, tm1.Month, tm1.Day, tm2.Wday, tm2.Year, tm2.Month, tm2.Day);
+}
+
 
 // Time Functions
+
 int compareHours(int hour1, int minute1, int second1, int hour2, int minute2, int second2)
 {
   int dif = (hour1 * 60 * 60 + minute1 * 60 + second1) - (hour2 * 60 * 60 + minute2 * 60 + second2);
   return dif > 0 ? 1 : dif < 0 ? -1
                                : 0;
+}
+
+int compareHours(tmElements_t Time1, tmElements_t Time2)
+{
+  return compareHours(Time1.Hour, Time1.Minute, Time1.Second, Time2.Hour, Time2.Minute, Time2.Second);
 }
