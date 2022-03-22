@@ -60,9 +60,25 @@ TEST_SUITE("Hour comparision Tests")
 
     TEST_CASE("Compare after hours")
     {
+        CHECK(compareHours(/*first*/ 10, 0, 0,
+                           /*second*/ 0, 0, 0) == 1);
+        CHECK(compareHours(/*first*/ 0, 30, 0,
+                           /*second*/ 0, 15, 0) == 1);
+        CHECK(compareHours(/*first*/ 12, 20, 10,
+                           /*second*/ 12, 20, 0) == 1);
+        CHECK(compareHours(/*first*/ 23, 59, 59,
+                           /*second*/ 0, 0, 0) == 1);
     }
 
     TEST_CASE("Compare before hours")
     {
+        CHECK(compareHours(/*first*/ 8, 0, 0,
+                           /*second*/ 12, 0, 0) == -1);
+        CHECK(compareHours(/*first*/ 12, 30, 0,
+                           /*second*/ 12, 45, 0) == -1);
+        CHECK(compareHours(/*first*/ 18, 20, 0,
+                           /*second*/ 18, 20, 40) == -1);
+        CHECK(compareHours(/*first*/ 0, 0, 0,
+                           /*second*/ 23, 59, 59) == -1);
     }
 }
