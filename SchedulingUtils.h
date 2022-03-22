@@ -26,6 +26,7 @@ extern "C++"
    * @param year2 second date year, pass 0 to ignore
    * @param month2 second date month, pass 0 to ignore
    * @param day2  second date day, pass 0 to ignore
+   * @warning Will return 0 if it's not possible compare dates, use isSameDay for more precision.
    * @return int : 1 the first date is after the second date;
                   -1 the fist date is before the second date;
                   Or 0 the first date is equal to the second date.
@@ -37,11 +38,16 @@ extern "C++"
    *
    * @param Date1 first date
    * @param Date2 second date
+   * @warning Will return 0 if it's not possible compare dates, use isSameDay for more precision.
    * @return int : 1 the first date is after the second date;
                   -1 the fist date is before the second date;
                   Or 0 the first date is equal to the second date.
    */
   int compareDates(tmElements_t Date1, tmElements_t Date2);
+
+  bool isSameDay(tmElements_t tm1, tmElements_t tm2);
+  bool isAfterOrSameDay(tmElements_t tm1, tmElements_t tm2);
+  bool isBeforeOrSameDay(tmElements_t tm1, tmElements_t tm2);
 
   // Time Functions
   /**
@@ -69,6 +75,9 @@ extern "C++"
                   Or 0 the first hour is equal to the hour date.
    */
   int compareHours(tmElements_t Time1, tmElements_t Time2);
+
+  bool isAfterOrSameHour(tmElements_t Time1, tmElements_t Time2);
+  bool isBeforeOrSameHour(tmElements_t Time1, tmElements_t Time2);
 
 } /* extern "C++"*/
 #endif /* __cplusplus*/

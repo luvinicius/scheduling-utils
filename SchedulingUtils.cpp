@@ -69,6 +69,22 @@ int compareDates(tmElements_t tm1, tmElements_t tm2)
   return compareDates(tm1.Wday, tm1.Year, tm1.Month, tm1.Day, tm2.Wday, tm2.Year, tm2.Month, tm2.Day);
 }
 
+bool isSameDay(tmElements_t tm1, tmElements_t tm2)
+{
+  return tm1.Year == tm2.Year 
+  && tm1.Month == tm2.Month 
+  && tm1.Day == tm2.Day 
+  && tm1.Wday == tm2.Wday;
+}
+
+bool isAfterOrSameDay(tmElements_t tm1, tmElements_t tm2)
+{
+  return isSameDay(tm1, tm2) || compareDates(tm1, tm2) > 0;
+}
+bool isBeforeOrSameDay(tmElements_t tm1, tmElements_t tm2)
+{
+  return isSameDay(tm1, tm2) || compareDates(tm1, tm2) < 0;
+}
 
 // Time Functions
 
@@ -82,4 +98,13 @@ int compareHours(int hour1, int minute1, int second1, int hour2, int minute2, in
 int compareHours(tmElements_t Time1, tmElements_t Time2)
 {
   return compareHours(Time1.Hour, Time1.Minute, Time1.Second, Time2.Hour, Time2.Minute, Time2.Second);
+}
+
+bool isAfterOrSameHour(tmElements_t Time1, tmElements_t Time2)
+{
+  return compareHours(Time1, Time2) >= 0;
+}
+bool isBeforeOrSameHour(tmElements_t Time1, tmElements_t Time2)
+{
+  return compareHours(Time1, Time2) <= 0;
 }

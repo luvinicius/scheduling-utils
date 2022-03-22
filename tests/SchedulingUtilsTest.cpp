@@ -32,6 +32,9 @@ TEST_SUITE("Date comparision Tests")
         tm2.Month = 8;
         tm2.Day = 28;
         CHECK(compareDates(tm1, tm2) == 0);
+        CHECK(isSameDay(tm1, tm2));
+        CHECK(isAfterOrSameDay(tm1, tm2));
+        CHECK(isBeforeOrSameDay(tm1, tm2));
 
         tmElements_t tm3 = tmElements_t();
         tm3.Month = 6;
@@ -40,12 +43,23 @@ TEST_SUITE("Date comparision Tests")
         tm4.Month = 6;
         tm4.Day = 7;
         CHECK(compareDates(tm3, tm4) == 0);
+        CHECK(isSameDay(tm3, tm4));
+        CHECK(isAfterOrSameDay(tm3, tm4));
+        CHECK(isBeforeOrSameDay(tm3, tm4));
 
         tmElements_t tm5 = tmElements_t();
         tm5.Wday = 2;
         tmElements_t tm6 = tmElements_t();
         tm6.Wday = 2;
         CHECK(compareDates(tm5, tm6) == 0);
+        CHECK(isSameDay(tm5, tm6));
+        CHECK(isAfterOrSameDay(tm5, tm6));
+        CHECK(isBeforeOrSameDay(tm5, tm6));
+
+        CHECK(!isSameDay(tm1, tm3));
+        CHECK(!isSameDay(tm2, tm4));
+        CHECK(!isSameDay(tm1, tm5));
+        CHECK(!isSameDay(tm3, tm6));
     }
 
     TEST_CASE("Compare after dates")
@@ -60,7 +74,7 @@ TEST_SUITE("Date comparision Tests")
                            /*second*/ 1, 0, 0, 0) == 1);
     }
 
-     TEST_CASE("Compare after dates with tmElements_t arguments")
+    TEST_CASE("Compare after dates with tmElements_t arguments")
     {
         tmElements_t tm1 = tmElements_t();
         tm1.Year = 1991;
@@ -71,6 +85,8 @@ TEST_SUITE("Date comparision Tests")
         tm2.Month = 6;
         tm2.Day = 7;
         CHECK(compareDates(tm1, tm2) == 1);
+        CHECK(isAfterOrSameDay(tm1, tm2));
+        CHECK(!isBeforeOrSameDay(tm1, tm2));
 
         tmElements_t tm3 = tmElements_t();
         tm3.Month = 8;
@@ -79,12 +95,16 @@ TEST_SUITE("Date comparision Tests")
         tm4.Month = 6;
         tm4.Day = 7;
         CHECK(compareDates(tm3, tm4) == 1);
+        CHECK(isAfterOrSameDay(tm3, tm4));
+        CHECK(!isBeforeOrSameDay(tm3, tm4));
 
         tmElements_t tm5 = tmElements_t();
         tm5.Wday = 4;
         tmElements_t tm6 = tmElements_t();
         tm6.Wday = 2;
         CHECK(compareDates(tm5, tm6) == 1);
+        CHECK(isAfterOrSameDay(tm5, tm6));
+        CHECK(!isBeforeOrSameDay(tm5, tm6));
     }
 
     TEST_CASE("Compare before dates")
@@ -110,6 +130,8 @@ TEST_SUITE("Date comparision Tests")
         tm2.Month = 1;
         tm2.Day = 1;
         CHECK(compareDates(tm1, tm2) == -1);
+        CHECK(isBeforeOrSameDay(tm1, tm2));
+        CHECK(!isAfterOrSameDay(tm1, tm2));
 
         tmElements_t tm3 = tmElements_t();
         tm3.Month = 4;
@@ -118,12 +140,16 @@ TEST_SUITE("Date comparision Tests")
         tm4.Month = 12;
         tm4.Day = 23;
         CHECK(compareDates(tm3, tm4) == -1);
+        CHECK(isBeforeOrSameDay(tm3, tm4));
+        CHECK(!isAfterOrSameDay(tm3, tm4));
 
         tmElements_t tm5 = tmElements_t();
         tm5.Wday = 5;
         tmElements_t tm6 = tmElements_t();
         tm6.Wday = 6;
         CHECK(compareDates(tm5, tm6) == -1);
+        CHECK(isBeforeOrSameDay(tm5, tm6));
+        CHECK(!isAfterOrSameDay(tm5, tm6));
     }
 }
 
@@ -150,6 +176,19 @@ TEST_SUITE("Time comparision Tests")
         tm2.Minute = 43;
         tm2.Second = 27;
         CHECK(compareHours(tm1, tm2) == 0);
+        CHECK(isAfterOrSameHour(tm1, tm2));
+        CHECK(isBeforeOrSameHour(tm1, tm2));
+
+        tmElements_t tm4 = tmElements_t();
+        tm4.Minute = 49;
+        tm4.Second = 59;
+        tmElements_t tm5 = tmElements_t();
+        tm5.Minute = 49;
+        tm5.Second = 59;
+
+        CHECK(compareHours(tm4, tm5) == 0);
+        CHECK(isAfterOrSameHour(tm4, tm5));
+        CHECK(isBeforeOrSameHour(tm4, tm5));
     }
 
     TEST_CASE("Compare after hours")
@@ -175,6 +214,8 @@ TEST_SUITE("Time comparision Tests")
         tm2.Minute = 29;
         tm2.Second = 59;
         CHECK(compareHours(tm1, tm2) == 1);
+        CHECK(isAfterOrSameHour(tm1, tm2));
+        CHECK(!isBeforeOrSameHour(tm1, tm2));
     }
 
     TEST_CASE("Compare before hours")
@@ -200,5 +241,7 @@ TEST_SUITE("Time comparision Tests")
         tm2.Minute = 0;
         tm2.Second = 0;
         CHECK(compareHours(tm1, tm2) == -1);
+        CHECK(isBeforeOrSameHour(tm1, tm2));
+        CHECK(!isAfterOrSameHour(tm1, tm2));
     }
 }
