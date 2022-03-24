@@ -79,6 +79,27 @@ extern "C++"
   bool isAfterOrSameHour(tmElements_t Time1, tmElements_t Time2);
   bool isBeforeOrSameHour(tmElements_t Time1, tmElements_t Time2);
 
+  int getNumberOfDigitsInTheYear(int year);
+
+  int * getDigitsOfYear(int year);
+
+  bool isLeapYear(int year);
+
+  int numberOfDays(int year, int month);
+
+  typedef enum
+  {
+    NONE = 0,
+    SECONDS = 1,
+    MINUTES = 2,
+    HOURS = 3,
+    DAYS = 4,
+    MONTHS = 5,
+    YEARS = 6
+  } Duration;
+
+  tmElements_t sumToDate(tmElements_t Time, int Units, Duration DurationUnit);
+
 } /* extern "C++"*/
 #endif /* __cplusplus*/
 #endif /* _Scheduling_Utils */

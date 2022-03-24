@@ -245,3 +245,87 @@ TEST_SUITE("Time comparision Tests")
         CHECK(!isAfterOrSameHour(tm1, tm2));
     }
 }
+
+TEST_SUITE("getNumberOfDigitsInTheYear tests")
+{
+TEST_CASE("getNumberOfDigitsInTheYear 1")
+    {
+        CHECK(getNumberOfDigitsInTheYear(1) == 1);
+    }
+
+    TEST_CASE("getNumberOfDigitsInTheYear 10")
+    {
+        CHECK(getNumberOfDigitsInTheYear(10) == 2);
+    }
+
+    TEST_CASE("getNumberOfDigitsInTheYear 100")
+    {
+        CHECK(getNumberOfDigitsInTheYear(100) == 3);
+    }
+
+    TEST_CASE("getNumberOfDigitsInTheYear 400")
+    {
+        CHECK(getNumberOfDigitsInTheYear(400) == 3);
+    }
+
+    TEST_CASE("getNumberOfDigitsInTheYear 999")
+    {
+        CHECK(getNumberOfDigitsInTheYear(999) == 3);
+    }
+
+    TEST_CASE("getNumberOfDigitsInTheYear 2020")
+    {
+        CHECK(getNumberOfDigitsInTheYear(2020) == 4);
+    }
+
+    TEST_CASE("getNumberOfDigitsInTheYear 10000")
+    {
+        CHECK(getNumberOfDigitsInTheYear(10000) == 5);
+    }
+}
+
+TEST_SUITE("numberOfDays tests")
+{
+   
+    TEST_CASE("getDigitsOfYear 2020")
+    {
+        int * digitsOf2020 = getDigitsOfYear(2020);
+        CHECK(digitsOf2020[0] == 2);
+        CHECK(digitsOf2020[1] == 0);
+        CHECK(digitsOf2020[2] == 2);
+        CHECK(digitsOf2020[3] == 0);
+        delete[] digitsOf2020;
+    }
+
+    TEST_CASE("getDigitsOfYear 2022")
+    {
+        int* digitsOf2022 = getDigitsOfYear(2022);
+        CHECK(digitsOf2022[0] == 2);
+        CHECK(digitsOf2022[1] == 0);
+        CHECK(digitsOf2022[2] == 2);
+        CHECK(digitsOf2022[3] == 2);
+        delete[] digitsOf2022;
+    }
+
+    TEST_CASE("getDigitsOfYear 2436")
+    {
+        int* digitsOf2436 = getDigitsOfYear(2436);
+        CHECK(digitsOf2436[0] == 2);
+        CHECK(digitsOf2436[1] == 4);
+        CHECK(digitsOf2436[2] == 3);
+        CHECK(digitsOf2436[3] == 6);
+        delete[] digitsOf2436;
+    }
+
+    TEST_CASE("getDigitsOfYear 123456")
+    {
+        int* digitsOf123456 = getDigitsOfYear(123456);
+        CHECK(digitsOf123456[0] == 1);
+        CHECK(digitsOf123456[1] == 2);
+        CHECK(digitsOf123456[2] == 3);
+        CHECK(digitsOf123456[3] == 4);
+        CHECK(digitsOf123456[4] == 5);
+        CHECK(digitsOf123456[5] == 6);
+        delete[] digitsOf123456;
+    }
+}
